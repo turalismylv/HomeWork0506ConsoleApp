@@ -139,7 +139,7 @@ namespace ConsoleApp1
                     Helper.Print("Isci elave etmek isteyirsinizmi?", ConsoleColor.DarkGreen);
                     result = Console.ReadLine();
 
-                } while (result.ToUpper() == "yes".ToUpper());
+                } while (result.ToUpper() == "yes".ToUpper()&& dp.Test());
                
             
              dp.Ortalama();

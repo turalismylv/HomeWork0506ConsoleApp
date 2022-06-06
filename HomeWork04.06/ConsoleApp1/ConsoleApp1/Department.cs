@@ -41,22 +41,31 @@ namespace ConsoleApp1
         public bool AddEmployee(Employee employee)
         {
 
-            if (employee.Experience >= RequiredExperience && employee.HasBachelorDegree == IsBachelorDegreeRequired)
+            int sum = 0;
+            if (employee.Experience >= RequiredExperience && employee.HasBachelorDegree == IsBachelorDegreeRequired && employee.Salary < Budget && sum < Budget)
+
             {
                 Array.Resize(ref employees, employees.Length + 1);
                 employees[employees.Length - 1] = employee;
-                int sum = 0;
-                foreach (var ep in employees)
-                {
-                    sum += ep.Salary;
-                }
-                if (EmployeeLimit >= employees.Length && sum <= Budget)
-                {
-                    return true;
-                }
-            }
 
+                sum += employee.Salary;
+                return true;
+
+            }
             return false;
+        }
+        public bool Test()
+        {
+            if (EmployeeLimit >= employees.Length + 1)
+            {
+                return true;
+            }
+            else
+            {
+                Helper.Print("Isci limiti dolmuwdur", ConsoleColor.Red);
+            }
+            return false;
+
         }
         public void Ortalama()
         {
@@ -68,10 +77,18 @@ namespace ConsoleApp1
             }
 
             int count = employees.Length;
-            Helper.Print($"Umumi maas ortalamasi :{cem / count}", ConsoleColor.Blue);
+            if (count == 0)
+            {
+                Helper.Print("Isci yoxdur", ConsoleColor.Red);
+            }
+            else
+            {
+                Helper.Print($"Umumi maas ortalamasi :{cem / count}", ConsoleColor.Blue);
+
+            }
+
         }
     }
-
 }
 
 
